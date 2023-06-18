@@ -4,19 +4,21 @@ import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { ThemedTitleV2 } from "@refinedev/mui";
 
 import { CredentialResponse } from "../interfaces/google";
+import { yariga } from "assets";
 
 // Todo: Update your Google Client ID here
 const GOOGLE_CLIENT_ID =
-  "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+'328665443497-bs1os2arpmldt1pmokr0ro29oqanljhe.apps.googleusercontent.com'
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
 
   const GoogleButton = (): JSX.Element => {
     const divRef = useRef<HTMLDivElement>(null);
+
+    
 
     useEffect(() => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
@@ -47,7 +49,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <Container
+    <Container component="div" sx={{ backgroundColor: "#fcfcfc"}}
       style={{
         height: "100vh",
         display: "flex",
@@ -61,25 +63,18 @@ export const Login: React.FC = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <ThemedTitleV2
-          collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
-          }}
-        />
+       
+        <Typography align="center" color={"text.secondary"} fontSize="12px">
+          <img
+            style={{ padding: "0 5px" }}
+            alt="yariga Logo"
+            src={yariga}
+          />
+        </Typography>
 
         <GoogleButton />
 
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
-          Powered by
-          <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-          />
-          Google
-        </Typography>
+        
       </Box>
     </Container>
   );
